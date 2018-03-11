@@ -31,20 +31,15 @@ def index():
         return redirect(url_for('index'))
 
     posts = current_user.followed_posts().all()
-    postss = [{
-        'author': {
-            'username': 'John'
-        },
-        'body': 'Beautiful day in Portland'
-    }, {
-        'author': {
-            'username': 'Susan'
-        },
-        'body': 'The Avengers movie was so cool!'
-    }]
 
-    return render_template(
-        'index.html.j2', title='Home', form=form, posts=posts)
+    return render_template('index.html', title='Home', form=form, posts=posts)
+
+
+@app.route('/explore')
+@login_required
+def explore():
+    posts = Post.query.order_by(Post.timestamp.desc()).all()
+    return render_template('index.html', title='Explore', posts=posts)
 
 
 @app.route('/login', methods=['GET', 'POST'])
