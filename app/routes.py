@@ -35,6 +35,7 @@ def index():
     posts = current_user.followed_posts().paginate(
         page, app.config['POSTS_PER_PAGE'], False)
     next_url = url_for(
+
         'index', page=posts.next_num) if posts.has_next else None
     prev_url = url_for(
         'index', page=posts.prev_num) if posts.has_prev else None
@@ -93,7 +94,7 @@ def login():
 def logout():
     logout_user()
     flash('You have been loggout.')
-    return redirect(url_for('index'))
+    return redirect(url_for('login'))
 
 
 @app.route('/register', methods=['GET', 'POST'])
