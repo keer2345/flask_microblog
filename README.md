@@ -10,7 +10,7 @@ This is an example application featured in my [Flask Mega-Tutorial](https://blog
 
 ## **Database**
 ```
-python manage.py db init
-python manage.py db migrate -m "login support"
-python manage.py db upgrade
+python microblog.py db init
+python microblog.py db migrate -m "login support"
+python microblog.py db upgrade
 ```

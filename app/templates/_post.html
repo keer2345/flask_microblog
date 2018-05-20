@@ -11,7 +11,9 @@
                 </a>
                     said {{ moment(post.timestamp).fromNow() }}:
                 <br>
-                {{ post.body }}
+              <span id="post{{post.id}}">  {{ post.body }}</span>
+                <br><br>
+                <a href="#">Translate</a>
             </td>
         </tr>
     </table>

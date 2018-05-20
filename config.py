@@ -29,3 +29,7 @@ class Config(object):
     MAIL_USE_SSL = 1   # True
     MAIL_USERNAME = 'keer2345@163.com'
     MAIL_PASSWORD = '912229hui'
+
+    # Translate
+    BAIDU_TRANS_APPID = "20180520000162460"
+    BAIDU_TRANS_KEY = "37ZqZWckmVuRPQe7uxWT"
