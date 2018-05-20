@@ -13,7 +13,14 @@
                 <br>
               <span id="post{{post.id}}">  {{ post.body }}</span>
                 <br><br>
-                <a href="#">Translate</a>
+                <span id ="translation{{post.id}}">
+                  <a href="javascript:translate(
+                    '#post{{post.id}}',
+                    '#translation{{post.id}}',
+                    '{{'auto'}}',
+                    '{{'auto'}}'
+                  );">Translate</a>
+              </span>
             </td>
         </tr>
     </table>

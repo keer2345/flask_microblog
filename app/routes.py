@@ -234,6 +234,13 @@ def reset_password(token):
 @app.route('/translate', methods=['POST'])
 @login_required
 def translate_text():
-    return jsonify({'text': translate(request.form['text'],
-                                      request.form['source_language'],
-                                      request.form['desc_language'])})
+    return jsonify({'text':    translate(request.form['text'],
+                                         request.form['source_language'],
+                                         request.form['desc_language'])
+                    ['trans_result'][0]['dst']
+
+                    # translate('hello','en','zh')
+                    # {'from': 'en',
+                    # 'to': 'zh',
+                    # 'trans_result': [{'src': 'hello', 'dst': '你好'}]}
+                    })

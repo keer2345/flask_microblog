@@ -33,3 +33,4 @@ class Config(object):
     # Translate
     BAIDU_TRANS_APPID = "20180520000162460"
     BAIDU_TRANS_KEY = "37ZqZWckmVuRPQe7uxWT"
+    # JSON_AS_ASCII = False
