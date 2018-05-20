@@ -59,6 +59,7 @@
 
     <script>
       function translate(sourceElement,descElement,sourceLang,descLang){
+          $(descElement).html('<img src="{{ url_for('static', filename='loading.gif') }}">');
           $.post('/translate',{
             text:$(sourceElement).text(),
             source_language:sourceLang,
@@ -66,7 +67,7 @@
           }).done(function(respone){
             $(descElement).text(respone['text'])
           }).fail(function(){
-            $(destElem).text("{{ 'Error: Could not contact server.' }}");
+            $(descElement).text("{{ 'Error: Could not contact server.' }}");
           });
       }
     </script>
