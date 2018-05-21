@@ -16,15 +16,18 @@ app.config.from_object(Config)
 
 db = SQLAlchemy(app)
 login = LoginManager(app)
-login.login_view = 'login'
+login.login_view = 'auth.login'
 
 mail = Mail(app)
 bootstrap = Bootstrap(app)
 moment = Moment(app)
 
 if 1 == 1:
-    from app.errors import error as error_bp
+    from app.errors import blueprint as error_bp
     app.register_blueprint(error_bp)
+
+    from app.auth import blueprint as auth_bp
+    app.register_blueprint(auth_bp, url_prefix='/auth')
 
 if not app.debug:
     if app.config['MAIL_SERVER']:
