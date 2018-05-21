@@ -1,13 +1,12 @@
 from datetime import datetime
 
 from flask import flash, jsonify, redirect, render_template, request, url_for
-from flask_login import current_user, login_required, login_user, logout_user
+from flask_login import current_user, login_required
 from guess_language import guess_language
-from werkzeug.urls import url_parse
 
 from app.email import send_password_reset_email
-from app.forms import (EditProfileForm, PostForm, RegistrationForm,
-                       ResetPasswordForm, ResetPasswordRequestForm)
+from app.forms import (EditProfileForm, PostForm, ResetPasswordForm,
+                       ResetPasswordRequestForm)
 from app.models import Post, User
 from app.translate import translate
 
@@ -72,33 +71,6 @@ def explore():
         posts=posts.items,
         next_url=next_url,
         prev_url=prev_url)
-
-
-@app.route('/logout')
-def logout():
-    logout_user()
-    flash('You have been loggout.')
-    return redirect(url_for('auth.login'))
-
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if current_user.is_authenticated:
-        flash('You have registered and logged in!')
-        return redirect(url_for('index'))
-
-    form = RegistrationForm()
-
-    if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data)
-        user.set_password(form.password.data)
-        db.session.add(user)
-        db.session.commit()
-
-        flash('Configurations, you are now registered user!')
-        return redirect(url_for('login'))
-
-    return render_template('register.html', title='Register', form=form)
 
 
 @app.route('/user/<username>')

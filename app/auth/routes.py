@@ -1,9 +1,10 @@
 from flask import flash, redirect, render_template, request, url_for
-from flask_login import current_user, login_user
+from flask_login import current_user, login_user, logout_user
 from werkzeug.urls import url_parse
 
+from app import db
 from app.auth import blueprint
-from app.auth.forms import LoginForm
+from app.auth.forms import LoginForm, RegistrationForm
 from app.models import User
 
 
@@ -28,3 +29,29 @@ def login():
         return redirect(next_page)
 
     return render_template('auth/login.html', title='Sign In', form=form)
+
+
+@blueprint.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('main.index'))
+
+
+@blueprint.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        flash('You have registered and logged in!')
+        return redirect(url_for('main.index'))
+
+    form = RegistrationForm()
+
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+
+        flash('Configurations, you are now registered user!')
+        return redirect(url_for('auth.login'))
+
+    return render_template('auth/register.html', title='Register', form=form)
