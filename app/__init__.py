@@ -6,14 +6,14 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from flask_mail import Mail
-# from flask_migrate import Migrate
+from flask_migrate import Migrate
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 
 from config import Config
 
 db = SQLAlchemy()
-# migrate = Migrate()
+migrate = Migrate()
 
 login = LoginManager()
 login.login_view = 'auth.login'
@@ -28,7 +28,7 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
 
     db.init_app(app)
-    # migrate.init_app(app, db)
+    migrate.init_app(app, db)
     login.init_app(app)
     mail.init_app(app)
     bootstrap.init_app(app)
