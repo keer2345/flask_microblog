@@ -29,6 +29,9 @@ if 1 == 1:
     from app.auth import blueprint as auth_bp
     app.register_blueprint(auth_bp, url_prefix='/auth')
 
+    from app.main import blueprint as main_bp
+    app.register_blueprint(main_bp)
+
 if not app.debug:
     if app.config['MAIL_SERVER']:
         auth = None
