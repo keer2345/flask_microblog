@@ -4,16 +4,15 @@ import random
 import urllib
 
 import requests
-
-from app import app
+from flask import current_app
 
 
 def translate(text, source_language, desc_language):
     q = text
     fromLang = source_language
     toLang = desc_language
-    appId = app.config['BAIDU_TRANS_APPID']
-    appKey = app.config['BAIDU_TRANS_KEY']
+    appId = current_app.config['BAIDU_TRANS_APPID']
+    appKey = current_app.config['BAIDU_TRANS_KEY']
     salt = random.randint(32768, 65536)
     salt = '1'
 
