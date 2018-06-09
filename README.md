@@ -14,3 +14,11 @@ python microblog.py db init
 python microblog.py db migrate -m "login support"
 python microblog.py db upgrade
 ```
+
+
+# Deploy
+Example:
+```
+docker-compose -f docker-compose-dev.yml build
+docker-compose -f docker-compose-dev.yml up -d
+```
