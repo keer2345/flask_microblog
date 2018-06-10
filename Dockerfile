@@ -13,4 +13,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /usr/src/app
 
 # run server
-CMD ["python", "manage.py"]
+# CMD ["python", "manage.py"]
+# ENTRYPOINT ["./boot.sh"]
+CMD ["./boot.sh"]
