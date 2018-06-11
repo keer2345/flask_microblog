@@ -3,14 +3,30 @@ version: '3'
 services:
   web:
     container_name: microblog_web
-    build: .
-      # context: .
-      # dockerfile: Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile-web
     volumes:
       - .:/usr/src/app
     ports:
       - 5001:5000
     environment:
-      # - FLASK_APP=project/__init__.py
       - FLASK_APP=manage.py
-    #   - FLASK_DEBUG=1
+      # - FLASK_DEBUG=1
+      - DATABASE_URL=postgres://postgres:postgres@microblog-db:5432/microblog
+      # - DATABASE_DEV_URL=postgres://postgres:postgres@microblog-db:5432/microblog_dev
+    depends_on:
+      - database
+    links:
+      - database
+
+  database:
+    container_name: microblog-db
+    build:
+      context: ./database
+      dockerfile: Dockerfile-db
+    ports:
+      - 5435:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
