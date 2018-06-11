@@ -3,21 +3,21 @@
 
 <!-- vim-markdown-toc GFM -->
 
-* [Welcome to Microblog!](#welcome-to-microblog)
+* [Welcome to Microblog](#welcome-to-microblog)
     * [Enviroment](#enviroment)
     * [Database](#database)
         * [With Flask-Script](#with-flask-script)
         * [With Flask-CLI](#with-flask-cli)
 * [Deploy](#deploy)
 * [Docker Usage](#docker-usage)
-    * [Access our Container:](#access-our-container)
-    * [Management Docker's container:](#management-dockers-container)
-    * [Management Docker's images:](#management-dockers-images)
-    * [Access PostgreSQL:](#access-postgresql)
+    * [Access our Container](#access-our-container)
+    * [Management Docker's container](#management-dockers-container)
+    * [Management Docker's images](#management-dockers-images)
+    * [Access PostgreSQL](#access-postgresql)
 
 <!-- vim-markdown-toc -->
 
-# Welcome to Microblog!
+# Welcome to Microblog
 
 This is an example application featured in my [Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world). See the tutorial for instructions on how to work with it.
 
@@ -54,13 +54,13 @@ docker-compose -f docker-compose-dev.yml up -d --build
 ```
 
 # Docker Usage
-## Access our Container:
+## Access our Container
 ```
 docker container ls -a
 docker exec -it [CONTAINER ID] /bin/bash
 ```
 
-## Management Docker's container:
+## Management Docker's container
 ```
 docker ps
 docker ps -a
@@ -69,14 +69,14 @@ docker stop [CONTAINER ID]
 docker rm [CONTAINER ID]
 docker rm $(docker ps -a -q -f status=exited)
 ```
-## Management Docker's images:
+## Management Docker's images
 ```
 docker images
 docker rmi [IMAGE ID]
 docker rmi $(docker images | grep "none" | awk '{print $3}')
 ```
 
-## Access PostgreSQL:
+## Access PostgreSQL
 ```
 docker exec -ti $(docker ps -aqf "name=microblog-db") psql -U postgres
 ```
