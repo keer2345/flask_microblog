@@ -13,8 +13,7 @@ services:
     environment:
       - FLASK_APP=manage.py
       # - FLASK_DEBUG=1
-      - DATABASE_URL=postgres://postgres:postgres@microblog-db:5432/microblog
-      # - DATABASE_DEV_URL=postgres://postgres:postgres@microblog-db:5432/microblog_dev
+      # - DATABASE_URL=postgres://postgres:postgres@microblog-db:5432/microblog
     depends_on:
       - database
     links:
