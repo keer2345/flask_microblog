@@ -14,20 +14,20 @@ services:
       - FLASK_APP=manage.py
       # - FLASK_DEBUG=1
       # - DATABASE_URL=postgres://postgres:postgres@microblog-db:5432/microblog
-    depends_on:
-      - database
-    links:
-      - database
+    # depends_on:
+      # - database
+#     links:
+#       - database
 
-  database:
-    container_name: microblog-db
-    build:
-      context: ./database
-      dockerfile: Dockerfile-db
-    # volumes:
-    #   - ./postgres-data/postgres:/var/lib/postgresql/data
-    ports:
-      - 5435:5432
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+#   database:
+    # container_name: microblog-db
+    # build:
+      # context: ./database
+      # dockerfile: Dockerfile-db
+    # # volumes:
+    # #   - ./postgres-data/postgres:/var/lib/postgresql/data
+    # ports:
+      # - 5435:5432
+    # environment:
+      # - POSTGRES_USER=postgres
+#       - POSTGRES_PASSWORD=postgres

@@ -7,11 +7,9 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
 
     # Database
-    # SQLALCHEMY_DATABASE_URI = os.environ.get(
-    #     'DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'app.db')
-
     SQLALCHEMY_DATABASE_URI = os.environ.get(
-        'DATABASE_URL') or 'mysql+pymysql://kwl3x4141w:002lk1mli2hxkm033jwmzxi1xmymhi2jxxzlkiw3@r.rdc.sae.sina.com.cn:3307/app_lzhjlw?charset=utf8'
+       'DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'app.db')
+
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     MAIL_SERVER = os.environ.get('MAIL_SERVER') or 'smtp.sina.com.cn'
